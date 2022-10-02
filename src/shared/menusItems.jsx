@@ -14,6 +14,7 @@ const MenusItems = ({allCat}) => {
     },[dispatch]);
     return (
         <div>
+            
             {/* <button type="button">All</button>
             {
                 menus.map((items, index) => {
