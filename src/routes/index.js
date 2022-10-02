@@ -3,6 +3,7 @@ import { Route, Routes } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Home from "../pages/index.jsx";
 import ErrorPage from "../pages/404/index.jsx";
+import OneProductsData from "../components/OneProductsData.jsx";
 // import ProductsIndex from "../pages/all/index.js";
 
 
@@ -16,6 +17,7 @@ const RouterPage = () => {
                 {/* <Route path="/login" element={<LoginPage />}/> */}
                 <Route path="*" element={<ErrorPage />} />
                 <Route exact path="/" element={<Home />}></Route>
+                <Route exact path="/oneproduct/:id" element={<OneProductsData />} />
             </Routes> 
         </>
     );

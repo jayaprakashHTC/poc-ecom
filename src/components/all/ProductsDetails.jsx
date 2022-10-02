@@ -5,13 +5,20 @@ import {FaRupeeSign} from "react-icons/fa";
 import {AiFillStar, AiOutlineStar} from "react-icons/ai";
 import MenusItems from "../../shared/menusItems.jsx";
 import BannerSection from "../BannerSection.jsx";
+import { Link } from "react-router-dom";
+// import axios from "axios";
+// import { useNavigate } from "react-router-dom";
 
 const ProductsDetails = () => {
     const [category, setCategory] = useState("All");
+    // const naviagte = useNavigate();
     // console.log("category", category);
     const produ = useSelector(state => state.productsReducers.products);
     const products = useSelector(state => state.productsReducers.products);
     console.log("products", products);
+
+    // const [oneData, setOneData] = useState([]);
+    // console.log("oneData",oneData);
    
 
     const dispatch = useDispatch(getProductsData);
@@ -27,6 +34,18 @@ const ProductsDetails = () => {
         produ === category ? dispatch(getProductsData()) : dispatch(getCatgeroiesData(cat));
         setCategory(produ);
     };
+
+    // const handleSingaleProduct = (id) =>{
+    //     console.log("id", id);
+    //     axios.get(`https://fakestoreapi.com/products/${id}`)
+    //         .then(res =>{
+    //             setOneData(res.data);
+    //             naviagte("/oneproduct");
+    //         })
+    //         .catch(err =>{
+    //             console.log("err", err);
+    //         });
+    // };
     
     return (
         <>
@@ -46,7 +65,13 @@ const ProductsDetails = () => {
                             products && products?.map(items =>{
                                 return(
                                     <div key={items.id} className="col-md-3 mt-4">
-                                        <div>
+                                        <Link 
+                                            // type="button"
+                                            // // onKeyDown={handleSingaleProduct}
+                                            // onClick={() =>handleSingaleProduct(`${items.id}`)}
+                                            // className="products-btn"
+                                            to={`/oneproduct/${items.id}`}
+                                        >
                                             <h2 className="title">{items.title}</h2>
                                             <div className="img-div">
                                                 <img 
@@ -62,7 +87,7 @@ const ProductsDetails = () => {
                                                 <AiFillStar className="stars"/>
                                                 <AiOutlineStar className="stars-empty" />
                                                 {items.rating.rate}</p>
-                                        </div>
+                                        </Link>
                                     </div>    
                                 );
                             })
