@@ -1,0 +1,19 @@
+.products-section{
+    .title {
+        font-size: 18px;
+    }
+    .img-div {
+        width: 100%;
+        height: auto;
+        img{
+            height: 150px;
+            width: 150px;
+        }
+    }
+    .stars {
+        color: orange;
+    }
+    .stars-empty {
+        margin-right: 6px;
+    }
+}

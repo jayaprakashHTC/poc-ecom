@@ -1,0 +1,2 @@
+export const USERS_LOGIN = "USERS_LOGIN";
+export const PRODUCTS_DATA = "PRODUCTS_DATA";

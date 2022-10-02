@@ -1,0 +1,4 @@
+export const USERS_LOGIN = "USERS_LOGIN";
+export const PRODUCTS_DATA = "PRODUCTS_DATA";
+export const MENU_ITEMS = "MENU_ITEMS";
+export const CATEGORIES_DATA = "CATEGORIES_DATA";
