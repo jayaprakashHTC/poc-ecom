@@ -1,25 +1,26 @@
-import React, { useEffect, useState } from "react";
-import {useSelector, useDispatch} from "react-redux";
-import {getCatgeroiesData, getProductsData} from "../../store/action/usersActions";
+import React, { useEffect} from "react";
+import {useDispatch} from "react-redux";
+import {getProductsData} from "../../store/action/usersActions";
 import {FaRupeeSign} from "react-icons/fa";
 import {AiFillStar, AiOutlineStar} from "react-icons/ai";
 import MenusItems from "../../shared/menusItems.jsx";
 import BannerSection from "../BannerSection.jsx";
 import { Link } from "react-router-dom";
+import useDropDown from "../custom-hooks/useDropDown";
 // import axios from "axios";
 // import { useNavigate } from "react-router-dom";
 
 const ProductsDetails = () => {
-    const [category, setCategory] = useState("All");
+    // const [category, setCategory] = useState("All");
     // const naviagte = useNavigate();
     // console.log("category", category);
-    const produ = useSelector(state => state.productsReducers.products);
-    const products = useSelector(state => state.productsReducers.products);
-    console.log("products", products);
+    // const produ = useSelector(state => state.productsReducers.products);
+  
 
     // const [oneData, setOneData] = useState([]);
     // console.log("oneData",oneData);
    
+    const {filteredProducts} = useDropDown();
 
     const dispatch = useDispatch(getProductsData);
 
@@ -28,12 +29,7 @@ const ProductsDetails = () => {
         // dispatch(getCatgeroiesData());
     },[dispatch]);
     
-
-    const allCat = (cat) =>{
-        dispatch(getProductsData());
-        produ === category ? dispatch(getProductsData()) : dispatch(getCatgeroiesData(cat));
-        setCategory(produ);
-    };
+   
 
     // const handleSingaleProduct = (id) =>{
     //     console.log("id", id);
@@ -51,7 +47,7 @@ const ProductsDetails = () => {
         <>
             <div className="menu-header">
                 <nav>
-                    <MenusItems allCat={allCat} />
+                    <MenusItems/>
                 </nav>
             </div>
             <BannerSection />
@@ -62,7 +58,7 @@ const ProductsDetails = () => {
                             <h2 className="mt-4">Product Details</h2>
                         </div>
                         {
-                            products && products?.map(items =>{
+                            filteredProducts && filteredProducts?.map(items =>{
                                 return(
                                     <div key={items.id} className="col-md-3 mt-4">
                                         <Link 

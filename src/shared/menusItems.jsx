@@ -4,8 +4,11 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {getMenuData} from "../store/action/usersActions";
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
+import useSelectMenu from "../components/custom-hooks/useSelectMenu";
 
-const MenusItems = ({allCat}) => {
+const MenusItems = () => {
+    const [allCat] = useSelectMenu();
     const menus = useSelector(state => state.menuReducers.menus);
     console.log("menus", menus);
     const dispatch = useDispatch();
@@ -14,38 +17,25 @@ const MenusItems = ({allCat}) => {
     },[dispatch]);
     return (
         <div>
-            
-            {/* <button type="button">All</button>
-            {
-                menus.map((items, index) => {
-                    return(
-                        <div key={index}>
-                            <button type="button" onChange={(e) =>{allCat(e.target.value);}}>{items}</button>
-                        </div>
-                    );
-                })
-            } */}
-
-            <select onChange={e => allCat(e.target.value)} name="" id="">
-
-                <option>All Products</option>
-
-                {
-
-                    menus.map(cat => <option key={cat}>{cat}</option>)
-
-                }
-
-
-
-            </select>
-            {/* <div>
-                {
-
-                    menus.map(cat => <button type="button" onChange={allCat()} key={cat}>{cat}</button>)
-
-                }
-            </div> */}
+            <nav>
+                <ul>
+                    <select onChange={e => allCat(e.target.value)} className="me-4">
+                        <option>All</option>
+                        {
+                            menus.map(cat => <option key={cat}>{cat}</option>)
+                        }
+                    </select>
+                    {
+                        menus.map((items, index) => {
+                            return(
+                                <li key={index}>
+                                    <Link to={items.id} onClick={(e) =>{allCat(e.target.innerText);}}>{items}</Link>
+                                </li>
+                            );
+                        })
+                    } 
+                </ul>
+            </nav>
         </div>
     );
 };

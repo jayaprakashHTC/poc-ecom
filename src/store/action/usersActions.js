@@ -1,9 +1,15 @@
-import { USERS_LOGIN, PRODUCTS_DATA, MENU_ITEMS, CATEGORIES_DATA } from "../types/productType";
+import { USERS_LOGIN, PRODUCTS_DATA, MENU_ITEMS, CATEGORIES_DATA, ONE_CATEGORIES_DATA, INCREMENT_TYPE } from "../types/productType";
 import ProductsServices from "../../services/products.services";
 export const usersTypeAction = (user) =>{
     return{
         type:USERS_LOGIN,
         payload:user
+    };
+};
+
+export const cartCountType = () =>{
+    return{
+        type:INCREMENT_TYPE
     };
 };
 
@@ -68,6 +74,33 @@ export const getCatgeroiesData = (cat) => {
         } catch (error) {
             console.log(error);
         }
+    };
+};
+
+export const getOneCatgeroiesData = (id) => {
+    return async (dispatch) => {
+        try {
+            const response = await matchingExportData.standardOneCatgoriesDataGetApi(id);
+            dispatch({ type: ONE_CATEGORIES_DATA, payload: response.data });
+        } catch (error) {
+            console.log(error);
+        }
+    };
+};
+
+export const addCart = (product) => {
+    return{
+        type : "ADDITEM",
+        payload : product
+    };
+};
+
+
+// For Delete Item From Cart
+export const delCart = (product) => {
+    return{
+        type : "DELITEM",
+        payload : product
     };
 };
 
