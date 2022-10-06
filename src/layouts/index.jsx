@@ -5,6 +5,7 @@ import PropTypes from "prop-types";
 import "../assets/css/footerStyles.scss";
 import "../assets/css/headerStyles.scss";
 import "../assets/css/productsStyles.scss";
+import "../assets/css/catgoryStyles.scss";
 const Layout = ({children}) => {
     return (
         <>

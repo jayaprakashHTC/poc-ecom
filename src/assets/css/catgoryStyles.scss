@@ -1,0 +1,20 @@
+.catgory-section {
+    padding: 60px 0px 60px 0px;
+    .img-cat {
+        width: 100%;
+        height: 85%;
+    }
+    .stars {
+        color: orange;
+    }
+    .cart-btn {  
+        margin-top: 40px;     
+      button {
+        background-color: #0d6efd;
+        border: none;
+        color: #fff;
+        padding: 6px 12px 6px 12px;
+        font-size: 20px;
+      }
+    }
+}
