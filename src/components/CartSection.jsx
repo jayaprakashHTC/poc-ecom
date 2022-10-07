@@ -42,8 +42,11 @@ const CartSection = () => {
                             <div className="col-md-4">
                                 <h3>{product.title}</h3>
                                 <p className="lead fw-bold">
-                                    {product.qty} X ${product.price} = ${product.qty * product.price}
+                                Items  {product.qty}  = ${product.qty * product.price} 
                                 </p>
+                            </div>
+                            <div className="col-md-4">
+                             
                                 <button className="btn btn-outline-dark me-3" onClick={()=>handleDel(product)}>
                                     <BiMinus />
                                 </button>

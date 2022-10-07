@@ -9,7 +9,6 @@ const Login = ({show, handleClose, setShow}) => {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState();
-    console.log("username, password", {username, password});
     const handlerEmail = (e) =>{
         setUsername(e.target.value);
     };
@@ -24,7 +23,6 @@ const Login = ({show, handleClose, setShow}) => {
         };
         axios.post("https://fakestoreapi.com/auth/login", data)
             .then(res =>{
-                console.log("res", res);
                 localStorage.setItem("token", res?.data?.token);
                 localStorage.setItem("user", JSON.stringify(username));
                 window.location.reload(false);
@@ -32,12 +30,10 @@ const Login = ({show, handleClose, setShow}) => {
             })
             .catch(e =>{
                 setError(e.response.data);
-                console.log("err", e);
             });
     };
   
     const user = JSON.parse(localStorage.getItem("user"));
-    console.log("user", user);
 
     const handlerLogout = () =>{
         localStorage.removeItem("token");
