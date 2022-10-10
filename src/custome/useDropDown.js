@@ -12,8 +12,9 @@ const useDropDown = () => {
         products === category ? dispatch(getProductsData()) : dispatch(getCatgeroiesData(cat));
         // setCategory(products);
     };
+    
 
-    return {products, allCat};
+    return {allCat};
 };
 
 

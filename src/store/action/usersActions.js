@@ -1,4 +1,4 @@
-import { USERS_LOGIN, PRODUCTS_DATA, MENU_ITEMS, CATEGORIES_DATA, ONE_CATEGORIES_DATA, INCREMENT_TYPE, SEARCH_FILTER } from "../types/productType";
+import { USERS_LOGIN, PRODUCTS_DATA, MENU_ITEMS, CATEGORIES_DATA, ONE_CATEGORIES_DATA, INCREMENT_TYPE } from "../types/productType";
 import ProductsServices from "../../services/products.services";
 export const usersTypeAction = (user) =>{
     return{
@@ -13,12 +13,35 @@ export const cartCountType = () =>{
     };
 };
 
-export const searchFilter = (searchText) =>{
-    return{
-        type:SEARCH_FILTER,
-        payload:searchText
-    };
-};
+// export const productsDataType = (data) =>{
+//     return{
+//         type:PRODUCTS_DATA,
+//         payload:data
+//     };
+// };
+
+// export const getProductsData = () =>{
+//     const matchingExportData = new ProductsServices();
+//     console.log("matchingExportData", matchingExportData);
+//     return (dispatch) =>{
+//         matchingExportData.standardDataGetApi()
+//             .then(res =>{
+//                 const productsDataType = (data) =>{
+//                     return{
+//                         type:PRODUCTS_DATA,
+//                         payload:data
+//                     };
+//                 };
+//                 dispatch(productsDataType(res.data));
+//                 console.log("action", dispatch(productsDataType(res.data)));
+//             })
+//             .catch(err =>{
+//                 console.log("err", err);
+//             });
+//     };
+// };
+
+// const URL = 'https://600c30e638fd25001702cf7e.mockapi.io/api/v1/products';
 
 const matchingExportData = new ProductsServices();
 
@@ -80,7 +103,6 @@ export const delCart = (product) => {
         payload : product
     };
 };
-
 
 
 

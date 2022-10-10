@@ -1,4 +1,4 @@
-import React, { useEffect} from "react";
+import React, { useCallback, useEffect} from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addCart, getOneCatgeroiesData} from "../store/action/usersActions";
 import { useParams } from "react-router-dom";
@@ -11,17 +11,13 @@ const OneProductsData = () => {
     const {id} = useParams();
     const product = useSelector(state => state.productsReducers.oneCatgorie);
     const dispatch = useDispatch();
-
-    const addProduct = (product) => {
+    const addProduct = useCallback((product) =>{
         dispatch(addCart(product));
-    };
-
+    },[dispatch]);
     useEffect(() =>{
         dispatch(getOneCatgeroiesData(id));
     },[dispatch,id]);
 
-   
-   
     return (
         <div className="catgory-section" key={product.id}>
             <div className="container">

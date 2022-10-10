@@ -31,7 +31,8 @@ const ProductsDetails = () => {
                                                 className="products-btn-link"
                                                 to={`/oneproduct/${items.id}`}
                                             >
-                                                <h2 className="title">{items.title}</h2>
+                                                <h4 className="category">{items.category}</h4>
+                                                <h2 className="title mt-4">{items.title}</h2>
                                                 <div className="img-div">
                                                     <img 
                                                         src={items.image} 

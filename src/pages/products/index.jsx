@@ -3,7 +3,7 @@ import OneProductsData from "../../components/OneProductsData.jsx";
 import Layout from "../../layouts/index.jsx";
 import SeoBlock from "../../layouts/seo/index.js";
 
-const Home = () => {
+const ProductIndex = () => {
   
     return (
         <Layout>
@@ -16,4 +16,4 @@ const Home = () => {
     );
 };
 
-export default Home;
+export default ProductIndex;

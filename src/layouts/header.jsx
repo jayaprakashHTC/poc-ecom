@@ -1,12 +1,12 @@
-import React, {useCallback, useEffect, useState} from "react";
+import React, {useState} from "react";
 import Images from "../assets/images/HTC-Logo_Yellow.png";
 import {Link, useNavigate} from "react-router-dom";
 import { BiMap } from "react-icons/bi";
 import {AiFillCaretDown} from "react-icons/ai";
 import {BsCart2} from "react-icons/bs";
 import Login from "../components/Login.jsx";
-import { useDispatch, useSelector } from "react-redux";
-import { getMenuData} from "../store/action/usersActions";
+import { useSelector } from "react-redux";
+// import { getMenuData} from "../store/action/usersActions";
 // import useSelectMenu from "../custome/useSelectMenu";
 import MenusItems from "../components/MenusItems.jsx";
 import SearchSection from "../components/SearchSection.jsx";
@@ -21,13 +21,13 @@ const Header = () => {
     // const menus = useSelector(state => state.menuReducers.menus);
     // const [allCat] = useSelectMenu();
 
-    const dispatch = useDispatch();
-    const data = useCallback(()=>{
-        dispatch(getMenuData());
-    },[dispatch]);
-    useEffect(() =>{
-        data();
-    },[data]);
+    // const dispatch = useDispatch();
+    // const data = useCallback(()=>{
+    //     dispatch(getMenuData());
+    // },[dispatch]);
+    // useEffect(() =>{
+    //     data();
+    // },[data]);
 
     return (
         <>
