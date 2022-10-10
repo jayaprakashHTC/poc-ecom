@@ -10,7 +10,8 @@ const initialState = {
 const initialProductsData = {
     products:[],
     catgories:[],
-    oneCatgorie:[]
+    oneCatgorie:[],
+    catgoriesData:[]
 };
 const initialMenuData = {
     menus:[]
@@ -45,7 +46,7 @@ const productsReducers = (state = initialProductsData, action) =>{
     case CATEGORIES_DATA:
         return{
             ...state,
-            products:action.payload,
+            catgoriesData:action.payload,
         };
     case ONE_CATEGORIES_DATA:
         return{

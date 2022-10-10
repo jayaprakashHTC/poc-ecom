@@ -1,17 +1,17 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { AiFillStar, AiOutlineStar } from "react-icons/ai";
 import { FaRupeeSign } from "react-icons/fa";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { getCatgeroiesData } from "../store/action/usersActions";
+// import { getCatgeroiesData } from "../store/action/usersActions";
 
 const CateorySection = () => {
     const data = useSelector(state => state.productsReducers.catgoriesData);
-    console.log("category", data);
-    const dispatch = useDispatch();
-    useEffect(() =>{
-        dispatch(getCatgeroiesData());
-    },[dispatch]);
+    // console.log("category", data);
+    // const dispatch = useDispatch();
+    // useEffect(() =>{
+    //     dispatch(getCatgeroiesData());
+    // },[dispatch]);
     
     return (
         <div className="products-section">
