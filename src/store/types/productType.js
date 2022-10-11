@@ -1,7 +1,4 @@
-export const USERS_LOGIN = "USERS_LOGIN";
 export const PRODUCTS_DATA = "PRODUCTS_DATA";
 export const MENU_ITEMS = "MENU_ITEMS";
 export const CATEGORIES_DATA = "CATEGORIES_DATA";
 export const ONE_CATEGORIES_DATA = "ONE_CATEGORIES_DATA";
-export const INCREMENT_TYPE = "INCREMENT_TYPE";
-export const DELETE_CART = "DELETE_CART";

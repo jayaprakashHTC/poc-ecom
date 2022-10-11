@@ -1,44 +1,21 @@
-import {USERS_LOGIN, PRODUCTS_DATA, MENU_ITEMS, CATEGORIES_DATA, ONE_CATEGORIES_DATA, INCREMENT_TYPE, DELETE_CART } from "../types/productType";
+import { ADD_TO_CART, ADJUST_ITEM_QTY, LOAD_CURRENT_ITEM, REMOVE_FROM_CART } from "../types/productAddCartType";
+import {PRODUCTS_DATA, MENU_ITEMS, CATEGORIES_DATA, ONE_CATEGORIES_DATA} from "../types/productType";
 
-const initialState = {
-    usersData:{
-        username:"galla",
-        password:"galla27159"
-    },
-    loading:false
-};
 const initialProductsData = {
     products:[],
     catgories:[],
     oneCatgorie:[],
-    catgoriesData:[]
+    catgoriesData:[],
+    cart: [],
+    currentItem: null,
 };
 const initialMenuData = {
     menus:[]
 };
 
-const initialCartCount = {
-    count:0,
-};
-
-
-const usersReducers = (state = initialState, action) =>{
-    switch(action.type){
-    case USERS_LOGIN:
-        console.log("reducerSate", state);
-        return{
-            usersData:action.payload,
-            loading:false
-        };
-   
-    default: return state;
-    }
-};
-
 const productsReducers = (state = initialProductsData, action) =>{
     switch(action.type){
     case PRODUCTS_DATA:
-        console.log("reducerSate", state);
         return{
             ...state,
             products:action.payload,
@@ -53,9 +30,48 @@ const productsReducers = (state = initialProductsData, action) =>{
             ...state,
             oneCatgorie:action.payload,
         };
+    case ADD_TO_CART:{
+        const item = state.products.find(
+            (product) => product.id === action.payload.id
+        );
+        const inCart = state.cart.find((item) =>
+            item.id === action.payload.id ? true : false
+        );
+      
+        return {
+            ...state,
+            cart: inCart
+                ? state.cart.map((item) =>
+                    item.id === action.payload.id
+                        ? { ...item, qty: item.qty + 1 }
+                        : item
+                )
+                : [...state.cart, { ...item, qty: 1 }],
+        };
+    }
+    case REMOVE_FROM_CART:
+        return {
+            ...state,
+            cart: state.cart.filter((item) => item.id !== action.payload.id),
+        };
+    case ADJUST_ITEM_QTY:
+        return {
+            ...state,
+            cart: state.cart.map((item) =>
+                item.id === action.payload.id
+                    ? { ...item, qty: +action.payload.qty }
+                    : item
+            ),
+        };
+    case LOAD_CURRENT_ITEM:
+        return {
+            ...state,
+            currentItem: action.payload,
+        };
     default: return state;
     }
 };
+
 const menuReducers = (state = initialMenuData, action) =>{
     switch(action.type){
     case MENU_ITEMS:
@@ -67,62 +83,4 @@ const menuReducers = (state = initialMenuData, action) =>{
     default: return state;
     }
 };
-
-const cartCountReducer = (state = initialCartCount, action) =>{
-    switch(action.type){
-    case INCREMENT_TYPE:
-        return{
-            ...state,
-            count:state.count + 1
-        };
-    default: return state;
-    }
-};
-
-const cart = [];
-
-const handleCart =(state = cart, action) => {
-    const product = action.payload;
-    switch (action.type) {
-    case "ADDITEM":{
-        const exist = state.find((x)=> x.id === product.id);
-        if(exist){
-            // Increase the Quantity
-            return state.map((x)=>
-                x.id === product.id ? {...x, qty: x.qty + 1} : x
-            );
-        }else{
-            const product = action.payload;
-            return[
-                ...state,
-                {
-                    ...product,
-                    qty: 1,
-                }
-            ];
-        }
-    }
-    case "DELITEM":{
-        const exist1 = state.find((x)=> x.id === product.id);
-        if(exist1.qty === 1){
-            return state.filter((x)=> x.id !== exist1.id);
-        }else{
-            return state.map((x)=>
-                x.id === product.id ? {...x, qty: x.qty-1} : null
-            );
-        }
-    }
-    case DELETE_CART :{
-        const deleteData = state.cart.filter((i) =>i.id !== product.id && i);
-        state.cart = deleteData;
-        return {
-            ...state
-        };
-    }
-    default:
-        return state;
-    }
-
-};
-
-export {usersReducers, productsReducers, menuReducers, cartCountReducer, handleCart};
+export {productsReducers, menuReducers};

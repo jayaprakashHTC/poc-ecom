@@ -1,39 +1,34 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import Images from "../assets/images/HTC-Logo_Yellow.png";
 import {Link, useNavigate} from "react-router-dom";
 import { BiMap } from "react-icons/bi";
 import {AiFillCaretDown} from "react-icons/ai";
 import {BsCart2} from "react-icons/bs";
 import Login from "../components/Login.jsx";
-import { useSelector } from "react-redux";
-// import { getMenuData} from "../store/action/usersActions";
-// import useSelectMenu from "../custome/useSelectMenu";
 import MenusItems from "../components/MenusItems.jsx";
 import SearchSection from "../components/SearchSection.jsx";
-
-// import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
-// import NavDropdown from "react-bootstrap/NavDropdown";
+import { useSelector } from "react-redux";
 
 const Header = () => {
     const navigate = useNavigate();
-    const handleShow = () => setShow(true);
+    const [cartCount, setCartCount] = useState(0);
     const [show, setShow] = useState(false);
+    const handleShow = () => setShow(true);
     const handleClose = () => setShow(false);
-    const state = useSelector((state)=> state.handleCart);
     const user = JSON.parse(localStorage.getItem("user"));
-    // const menus = useSelector(state => state.menuReducers.menus);
-    // const [allCat] = useSelectMenu();
+    const cart = useSelector(state => state.productsReducers.cart);
 
-    // const dispatch = useDispatch();
-    // const data = useCallback(()=>{
-    //     dispatch(getMenuData());
-    // },[dispatch]);
-    // useEffect(() =>{
-    //     data();
-    // },[data]);
-
+    useEffect(() => {
+        let count = 0;
+        cart.forEach((item) => {
+            count += item.qty;
+        });
+  
+        setCartCount(count);
+    }, [cart, cartCount]);
+    
     return (
         <>
 
@@ -63,9 +58,6 @@ const Header = () => {
                                 </div>
                                 <SearchSection />
                                 <div className="sign-in">
-                                    {/* <button type="button" onClick={handleShow}>
-                            <p>Hello , sign in <AiFillCaretDown /></p>
-                        </button> */}
                                     {
                                         user ? (
                                             <>
@@ -84,7 +76,7 @@ const Header = () => {
                                 <div className="cart">
                                     <button type="button" onClick={() =>navigate("/cart")}>
                                         <BsCart2 className="bscart"/>
-                                        <span className="carts">({state.length})</span>
+                                        <span className="carts">{cartCount}</span>
                                     </button>
                                 </div>
                             </div>

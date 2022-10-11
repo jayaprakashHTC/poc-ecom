@@ -6,6 +6,7 @@ import "../assets/css/footerStyles.scss";
 import "../assets/css/headerStyles.scss";
 import "../assets/css/productsStyles.scss";
 import "../assets/css/catgoryStyles.scss";
+import "../assets/css/cartStyles.scss";
 const Layout = ({children}) => {
     return (
         <>

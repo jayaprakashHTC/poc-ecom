@@ -5,25 +5,10 @@ import { useSelector } from "react-redux";
 import { Link, useLocation } from "react-router-dom";
 
 const SearchItems = () => {
-    // const [users, setUsers] = useState([]);
     const products = useSelector(state => state.productsReducers.products);
     const location = useLocation();
-    // const users = location?.state?.users
-    // console.log("users", users);
     const category = location?.state?.category;
     const search = location?.state?.search;
-   
-    // useEffect(() =>{
-    //     const fetchData = () =>{
-    //         axios.get("https://fakestoreapi.com/products")
-    //             .then(res =>{
-    //                 setUsers(res.data);
-    //             });
-    //     };
-    //     fetchData();
-    // },[]);
-  
-
     const byCategory = (user, category) => {
         if (category) {
             return user.category === category;
@@ -46,9 +31,6 @@ const SearchItems = () => {
             <div className="container">
                 <div className="row">      
                     {filteredList(products, category, search).map(user => (
-                        // <div key={user.id}>
-                        //     {user.title} : {user.category}
-                        // </div>
                         <div key={user.id} className="col-md-3 mt-4">
                             <div className="product_list">
                                 <Link
