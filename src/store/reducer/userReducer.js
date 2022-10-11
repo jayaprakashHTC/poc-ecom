@@ -1,4 +1,4 @@
-import {USERS_LOGIN, PRODUCTS_DATA, MENU_ITEMS, CATEGORIES_DATA, ONE_CATEGORIES_DATA, INCREMENT_TYPE } from "../types/productType";
+import {USERS_LOGIN, PRODUCTS_DATA, MENU_ITEMS, CATEGORIES_DATA, ONE_CATEGORIES_DATA, INCREMENT_TYPE, DELETE_CART } from "../types/productType";
 
 const initialState = {
     usersData:{
@@ -111,6 +111,13 @@ const handleCart =(state = cart, action) => {
                 x.id === product.id ? {...x, qty: x.qty-1} : null
             );
         }
+    }
+    case DELETE_CART :{
+        const deleteData = state.cart.filter((i) =>i.id !== product.id && i);
+        state.cart = deleteData;
+        return {
+            ...state
+        };
     }
     default:
         return state;

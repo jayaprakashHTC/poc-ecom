@@ -1,26 +1,27 @@
-import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { AiFillStar, AiOutlineStar } from "react-icons/ai";
 import { FaRupeeSign } from "react-icons/fa";
+import { useSelector } from "react-redux";
 import { Link, useLocation } from "react-router-dom";
 
 const SearchItems = () => {
-    const [users, setUsers] = useState([]);
+    // const [users, setUsers] = useState([]);
+    const products = useSelector(state => state.productsReducers.products);
     const location = useLocation();
     // const users = location?.state?.users
-    console.log("users", users);
+    // console.log("users", users);
     const category = location?.state?.category;
     const search = location?.state?.search;
    
-    useEffect(() =>{
-        const fetchData = () =>{
-            axios.get("https://fakestoreapi.com/products")
-                .then(res =>{
-                    setUsers(res.data);
-                });
-        };
-        fetchData();
-    },[]);
+    // useEffect(() =>{
+    //     const fetchData = () =>{
+    //         axios.get("https://fakestoreapi.com/products")
+    //             .then(res =>{
+    //                 setUsers(res.data);
+    //             });
+    //     };
+    //     fetchData();
+    // },[]);
   
 
     const byCategory = (user, category) => {
@@ -34,8 +35,8 @@ const SearchItems = () => {
         } else return user;
     };
     
-    const filteredList = (users, category, search) => {
-        return users
+    const filteredList = (products, category, search) => {
+        return products
             .filter(user => byCategory(user, category))
             .filter(user => bySearch(user, search));
     };
@@ -44,7 +45,7 @@ const SearchItems = () => {
         <div className="products-section">
             <div className="container">
                 <div className="row">      
-                    {filteredList(users, category, search).map(user => (
+                    {filteredList(products, category, search).map(user => (
                         // <div key={user.id}>
                         //     {user.title} : {user.category}
                         // </div>

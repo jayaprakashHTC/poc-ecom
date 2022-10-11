@@ -2,10 +2,9 @@ import React, { useState } from "react";
 import Modal from "react-bootstrap/Modal";
 import PropTypes from "prop-types";
 import axios from "axios";
-// import { useNavigate} from "react-router-dom";
+
 const Login = ({show, handleClose, setShow}) => {
 
-    // const history = useNavigate();
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState();
@@ -16,7 +15,6 @@ const Login = ({show, handleClose, setShow}) => {
         setPassword(e.target.value);
     };
     const handlerApi = () =>{
-        console.log("email, password", {username, password});
         const data = {
             username:username,
             password:password

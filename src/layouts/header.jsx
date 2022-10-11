@@ -11,6 +11,11 @@ import { useSelector } from "react-redux";
 import MenusItems from "../components/MenusItems.jsx";
 import SearchSection from "../components/SearchSection.jsx";
 
+// import Container from "react-bootstrap/Container";
+import Nav from "react-bootstrap/Nav";
+import Navbar from "react-bootstrap/Navbar";
+// import NavDropdown from "react-bootstrap/NavDropdown";
+
 const Header = () => {
     const navigate = useNavigate();
     const handleShow = () => setShow(true);
@@ -31,53 +36,65 @@ const Header = () => {
 
     return (
         <>
-            <div className="header-section">
-                <div className="flex-container">
-                    <div className="logo-image">
-                        <Link to="/">
-                            <img src={Images} alt="" className="image"/>
-                        </Link>    
-                    </div>
-                    <div className="location">
-                        <div className="flex-container">
-                            <div>
-                                <BiMap className="bimap"/>
-                            </div>
-                            <div>
-                                <p>Deliver to</p>
-                                <p><strong>India</strong></p>
-                            </div>
-                        </div>
-                    </div>
-                    <SearchSection />
-                    <div className="sign-in">
-                        {/* <button type="button" onClick={handleShow}>
+
+            <Navbar collapseOnSelect expand="lg" className="header-section" variant="dark">
+               
+                {/* <Navbar.Brand href="#home">React-Bootstrap</Navbar.Brand> */}
+                <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+                <Navbar.Collapse id="responsive-navbar-nav">
+                    <Nav className="me-auto">
+                        <div>
+                            <div className="flex-container">
+                                <div className="logo-image">
+                                    <Link to="/">
+                                        <img src={Images} alt="" className="image"/>
+                                    </Link>    
+                                </div>
+                                <div className="location">
+                                    <div className="flex-container">
+                                        <div>
+                                            <BiMap className="bimap"/>
+                                        </div>
+                                        <div>
+                                            <p>Deliver to</p>
+                                            <p><strong>India</strong></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <SearchSection />
+                                <div className="sign-in">
+                                    {/* <button type="button" onClick={handleShow}>
                             <p>Hello , sign in <AiFillCaretDown /></p>
                         </button> */}
-                        {
-                            user ? (
-                                <>
-                                    <button type="button" onClick={handleShow}>
-                                        <p>Hello , {user} </p>
-                                    </button> 
-                                </>
-                            ) : 
-                                <>
-                                    <button type="button" onClick={handleShow}>
-                                        <p>Hello , sign in <AiFillCaretDown /></p>
-                                    </button> 
-                                </>
-                        }
-                    </div>
-                    <div className="cart">
-                        <button type="button" onClick={() =>navigate("/cart")}>
-                            <BsCart2 className="bscart"/>
-                            <span className="carts">({state.length})</span>
-                        </button>
-                    </div>
-                </div>
-            </div>
-
+                                    {
+                                        user ? (
+                                            <>
+                                                <button type="button" onClick={handleShow}>
+                                                    <p>Hello , {user} </p>
+                                                </button> 
+                                            </>
+                                        ) : 
+                                            <>
+                                                <button type="button" onClick={handleShow}>
+                                                    <p>Hello , sign in <AiFillCaretDown /></p>
+                                                </button> 
+                                            </>
+                                    }
+                                </div>
+                                <div className="cart">
+                                    <button type="button" onClick={() =>navigate("/cart")}>
+                                        <BsCart2 className="bscart"/>
+                                        <span className="carts">({state.length})</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </Nav>
+                      
+                </Navbar.Collapse>
+               
+            </Navbar>
+          
             <div className="menu-header">
                 <nav>
                     <MenusItems/>

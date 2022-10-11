@@ -1,4 +1,4 @@
-import { USERS_LOGIN, PRODUCTS_DATA, MENU_ITEMS, CATEGORIES_DATA, ONE_CATEGORIES_DATA, INCREMENT_TYPE } from "../types/productType";
+import { USERS_LOGIN, PRODUCTS_DATA, MENU_ITEMS, CATEGORIES_DATA, ONE_CATEGORIES_DATA, INCREMENT_TYPE, DELETE_CART } from "../types/productType";
 import ProductsServices from "../../services/products.services";
 export const usersTypeAction = (user) =>{
     return{
@@ -101,6 +101,13 @@ export const delCart = (product) => {
     return{
         type : "DELITEM",
         payload : product
+    };
+};
+
+export const deleteCart = (data) =>{
+    return{
+        type:DELETE_CART,
+        payload:data
     };
 };
 
