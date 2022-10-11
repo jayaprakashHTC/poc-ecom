@@ -32,7 +32,8 @@
       "error",
       { "devDependencies": ["**/*.stories.*", "**/*.spec.js"] }
     ],
-    "no-case-declarations": "warn"
+    "no-case-declarations": "warn",
+    "jsx-a11y/no-autofocus": "error"
     
   },
   "plugins": ["prettier"],

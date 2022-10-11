@@ -44,6 +44,10 @@
                 .search-btn {
                     padding: 8px 16px 8px 16px;
                 }
+                .flex-container {
+                    display: flex;
+                    flex-wrap: wrap;
+                }
         }
         .sign-in{
             margin-top: 6px;
@@ -124,4 +128,22 @@
     font-size: 16px;
     font-weight: 700;
    padding-top: 12px;
+}
+
+.cEpbvV {
+    position: relative;
+    height: 36px;
+    width: 450px;
+}
+.cEpbvV > .wrapper {
+    border: none !important;
+    border-radius: 0px !important;
+    background-color: white;
+    color: black;
+    font-size: 14px;
+    font-family: Courier;
+    z-index: 2;
+}
+.hgsrKe {
+    min-height: 40px !important;
 }
