@@ -2,14 +2,12 @@ import React, { useState } from "react";
 import Modal from "react-bootstrap/Modal";
 import PropTypes from "prop-types";
 import axios from "axios";
-// import { useNavigate} from "react-router-dom";
+
 const Login = ({show, handleClose, setShow}) => {
 
-    // const history = useNavigate();
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState();
-    console.log("username, password", {username, password});
     const handlerEmail = (e) =>{
         setUsername(e.target.value);
     };
@@ -17,14 +15,12 @@ const Login = ({show, handleClose, setShow}) => {
         setPassword(e.target.value);
     };
     const handlerApi = () =>{
-        console.log("email, password", {username, password});
         const data = {
             username:username,
             password:password
         };
         axios.post("https://fakestoreapi.com/auth/login", data)
             .then(res =>{
-                console.log("res", res);
                 localStorage.setItem("token", res?.data?.token);
                 localStorage.setItem("user", JSON.stringify(username));
                 window.location.reload(false);
@@ -32,12 +28,10 @@ const Login = ({show, handleClose, setShow}) => {
             })
             .catch(e =>{
                 setError(e.response.data);
-                console.log("err", e);
             });
     };
   
     const user = JSON.parse(localStorage.getItem("user"));
-    console.log("user", user);
 
     const handlerLogout = () =>{
         localStorage.removeItem("token");

@@ -14,4 +14,5 @@ export default class ProductsServices {
     standardOneCatgoriesDataGetApi(id) {
         return axios.get(`https://fakestoreapi.com/products/${id}`);
     }
+   
 }

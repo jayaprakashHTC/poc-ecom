@@ -1,86 +1,52 @@
-import React from "react";
-import { BiMinus, BiPlus } from "react-icons/bi";
-import {useSelector, useDispatch} from "react-redux";
-import { NavLink } from "react-router-dom";
-import { addCart, delCart } from "../store/action/usersActions";
+import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
+import CartQuantity from "./CartQuantity.jsx";
 
 const CartSection = () => {
-    const state = useSelector((state)=> state.handleCart);
-    const dispatch = useDispatch();
+    const cart = useSelector(state => state.productsReducers.cart);
+    console.log("cartSection", cart);
+    const [totalPrice, setTotalPrice] = useState(0);
+    const [totalItems, setTotalItems] = useState(0);
 
-    const handleAdd = (item) => {
-        dispatch(addCart(item));
-    };
-    const handleDel = (item) => {
-        dispatch(delCart(item));
-    };
+    useEffect(() => {
+        let items = 0;
+        let price = 0;
 
-    const removeData = (item) =>{
-        dispatch(delCart(item));
-    };
+        cart.forEach((item) => {
+            items += item.qty;
+            price += item.qty * item.price;
+        });
 
-    const emptyCart = () => {
-        return(
-            <div className="px-4 my-5 bg-light rounded-3 py-5">
-                <div className="container py-4">
+        setTotalItems(items);
+        setTotalPrice(price);
+    }, [cart, totalPrice, totalItems, setTotalPrice, setTotalItems]);
+    return (
+        <>
+            <div className="cart-section">
+                <div className="container">
                     <div className="row">
-                        <h3>Your Cart is Empty</h3>
-                    </div>
-                </div>
-            </div>
-        );
-    };
-    const cartItems = (product) => {
-        return(
-            <>
-                <div className="px-4 my-5 bg-light rounded-3 py-5">
-                    <div className="container py-4">
-                        <div className="row justify-content-center">
-                            <div className="col-md-4">
-                                <img src={product.image} alt={product.title} height="200px" width="180px" />
-                            </div>
-                            <div className="col-md-4">
-                                <h3>{product.title}</h3>
-                                <p className="lead fw-bold">
-                                    {product.qty} X ${product.price} = ${product.qty * product.price}
-                                </p>
-                                <button className="btn btn-outline-dark me-3" onClick={()=>handleDel(product)}>
-                                    <BiMinus />
-                                </button>
-                                <button className="btn btn-outline-dark me-3" onClick={()=> handleAdd(product)}>
-                                    <BiPlus />
-                                </button>
-                                <button className="btn btn-outline-dark" onClick={()=> removeData(product)}>
-                                Remove cart
-                                </button>
+                        {
+                            cart.map(items =>(
+                                <CartQuantity key={items.id} items={items} />
+                            ))
+                        }
+                        <div className="col-md-6 m-auto mt-4">
+                            <div className="cart__summary">
+                                <h4 className="summary__title mt-4">Cart Summary</h4>
+                                <div className="summary__price mt-4 mb-3">
+                                    <span>TOTAL: ({totalItems} items) - </span>
+                                    <span>$ {totalPrice}</span>
+                                </div>
+                                <Link to="/checkout" className="summary__checkoutBtn">
+                                  Proceed To Checkout
+                                </Link>
                             </div>
                         </div>
                     </div>
                 </div>
-            </>
-        );
-
-    };
-    const buttons = () => {
-        return(
-            <>
-                <div className="container">
-                    <div className="row">
-                        <NavLink to="/checkout" className="btn btn-outline-dark mb-5 w-25 mx-auto">
-                            Proceed to Checkout
-                        </NavLink>
-                    </div>
-                </div>
-            </>
-        );
-    };
-
-    return (
-        <div>
-            {state.length === 0 && emptyCart()}
-            {state.length !== 0 && state.map(cartItems)}
-            {state.length !== 0 && buttons()}
-        </div>
+            </div>
+        </>
     );
 };
 
