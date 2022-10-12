@@ -36,7 +36,7 @@ const SearchSection = () => {
         <div className="search-bar">
             <div className="flex-container">
                 <div>
-                    <select onChange={e => setCategory(e.target.value)} className="formcontrol selectdrop">
+                    <select onChange={e => setCategory(e.target.value)} className="formcontrol">
                         <option value="all">All</option>
                         {
                             menus.map(cat => <option key={cat}>{cat}</option>)
@@ -78,7 +78,7 @@ const SearchSection = () => {
                     />
                 </div>
                 <div>
-                    <button type="button" className="formcontrol search-btn" onClick={handleSubmit}><BsSearch /></button>
+                    <button type="button" className="search-btn" onClick={handleSubmit}><BsSearch /></button>
                 </div>
                
                 
