@@ -34,17 +34,26 @@ const Header = () => {
 
             <Navbar collapseOnSelect expand="lg" className="header-section" variant="dark">
                
-                {/* <Navbar.Brand href="#home">React-Bootstrap</Navbar.Brand> */}
+                <Navbar.Brand>
+                    <div className="logo-image">
+                        <Link to="/">
+                            <img src={Images} alt="" className="image"/>
+                        </Link>   
+                        <div className="cart">
+                            <button type="button" onClick={() =>navigate("/cart")}>
+                                <BsCart2 className="bscart"/>
+                                <span className="carts">{cartCount}</span>
+                            </button>
+                        </div> 
+                    </div>
+                    
+                </Navbar.Brand>
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                 <Navbar.Collapse id="responsive-navbar-nav">
                     <Nav className="me-auto">
-                        <div>
+                        {/* <div>
                             <div className="flex-container">
-                                <div className="logo-image">
-                                    <Link to="/">
-                                        <img src={Images} alt="" className="image"/>
-                                    </Link>    
-                                </div>
+                              
                                 <div className="location">
                                     <div className="flex-container">
                                         <div>
@@ -80,6 +89,37 @@ const Header = () => {
                                     </button>
                                 </div>
                             </div>
+                        </div> */}
+                        <div className="flex-items">
+                            <div className="location">
+                                <div className="flex-container">
+                                    <div>
+                                        <BiMap className="bimap"/>
+                                    </div>
+                                    <div>
+                                        <p>Deliver to</p>
+                                        <p><strong>India</strong></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <SearchSection />
+                            <div className="sign-in">
+                                {
+                                    user ? (
+                                        <>
+                                            <button type="button" onClick={handleShow}>
+                                                <p>Hello , {user} </p>
+                                            </button> 
+                                        </>
+                                    ) : 
+                                        <>
+                                            <button type="button" onClick={handleShow}>
+                                                <p>Hello , sign in <AiFillCaretDown /></p>
+                                            </button> 
+                                        </>
+                                }
+                            </div>
+                           
                         </div>
                     </Nav>
                       
